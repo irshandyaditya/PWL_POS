@@ -106,7 +106,9 @@ class UserController extends Controller
         // $user->wasChanged(['nama', 'username']); //t
         // dd($user->wasChanged(['nama', 'username'])); //true untuk cek data pernah diubah atau tidak sejak menjadi data model (blm disave)
 
-        $user = UserModel::all();
+        // $user = UserModel::all();
+
+        $user = UserModel::with('level')->get();
         return view('user', ['data' => $user]);
     }
 
