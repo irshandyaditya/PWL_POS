@@ -49,16 +49,64 @@ class UserController extends Controller
         //     ],
         // ); menambahkan data apabila tidak ada sekaligus menampilkan data tersebut atau hanya menampilkan data jika data tersebut telah direcord dalam table m_user
 
-        $user = UserModel::firstOrNew(
+        // $user = UserModel::firstOrNew(
+        //     [
+        //         'username' => 'manager33',
+        //         'nama' => 'Manager Tiga Tiga',
+        //         'password' => Hash::make('12345'),
+        //         'level_id' => 2
+        //     ],
+        // );
+        // $user->save(); membuat dan menyimpan data model
+
+        // $user = UserModel::create(
+        //     [
+        //         'username' => 'manager55',
+        //         'nama' => 'Manager55',
+        //         'password' => Hash::make('12345'),
+        //         'level_id' => 2
+        //     ],
+        // ); 
+
+        // $user->username = 'manager56';
+
+        // $user->isDirty(); //t karena data pernah berubah
+        // $user->isDirty('username'); //t
+        // $user->isDirty('nama'); //f
+        // $user->isDirty(['nama', 'username']); //t
+
+        // $user->isClean(); //f karena data pernah berubah
+        // $user->isClean('username'); //f
+        // $user->isClean('nama'); //t
+        // $user->isClean(['nama', 'username']); //f
+
+        // $user->save();
+
+        // $user->isDirty(); //false
+        // $user->isClean(); //true
+        // dd($user->isDirty()); Untuk mengetahui apakah data pernah diuubah atau tidak
+        
+        $user = UserModel::create(
             [
-                'username' => 'manager33',
-                'nama' => 'Manager Tiga Tiga',
+                'username' => 'manager11',
+                'nama' => 'Manager11',
                 'password' => Hash::make('12345'),
                 'level_id' => 2
             ],
-        );
-        $user->save();
+        ); 
 
-        return view('user', ['data' => $user]);
+        $user->username = 'manager12';
+
+        
+        $user->save();
+        
+        $user->wasChanged(); //t karena data pernah berubah
+        $user->wasChanged('username'); //t
+        $user->wasChanged(['username', 'level_id']); //t
+        $user->wasChanged('nama'); //f
+        $user->wasChanged(['nama', 'username']); //t
+        dd($user->wasChanged(['nama', 'username'])); //true
+
+        // return view('user', ['data' => $user]);
     }
 }
