@@ -22,11 +22,19 @@ class KategoriDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            /* ->addColumn('action', 'kategori.action') */
+            ->addColumn('action', function ($data){
+                return 
+                '<div class="row">
+                    <div class="col d-flex">
+                        <a class="btn btn-warning" href="'. route('kategori.edit', $data->kategori_id) .'">Edit</a> 
+                        <a class="btn btn-danger" href="'. route('kategori.hapus', $data->kategori_id) .'">hapus</a> 
+                    </div>
+                </div>';
+            })
             ->setRowId('id');
     }
     /**
-     * Get the query source of dataTable.
+     * Get the query source of dataTable.   
      */
     public function query(KategoriModel $model): QueryBuilder
     {
@@ -45,12 +53,12 @@ class KategoriDataTable extends DataTable
                     ->orderBy(1)
                     ->selectStyleSingle()
                     ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
+                        // Button::make('excel'),
+                        // Button::make('csv'),
+                        // Button::make('pdf'),
+                        // Button::make('print'),
+                        // Button::make('reset'),
+                        // Button::make('reload')
                     ]);
     }
     /**
@@ -59,16 +67,16 @@ class KategoriDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            /* Column::computed('action')
-            ->exportable(false)
-            ->printable(false)
-            ->width(60)
-            ->addClass('text-center'), */
             Column::make('kategori_id'),
             Column::make('kategori_kode'),
             Column::make('kategori_nama'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::computed('action')
+                ->exportable()
+                ->printable()
+                ->width(60)
+                ->addClass('text-center')
         ];
     }
     /**
