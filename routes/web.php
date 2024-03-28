@@ -16,18 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/kategori', [KategoriController::class, 'index']);
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/level', [LevelController::class, 'index']);
 Route::get('/level/tambah', [LevelController::class, 'tambah']);
-Route::get('/kategori', [KategoriController::class, 'index']);
+Route::post('/kategori', [KategoriController::class, 'store']);
 Route::get('/kategori/create', [KategoriController::class, 'create']);
 Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
 Route::put('/kategori/edit_simpan/{id}', [KategoriController::class, 'edit_simpan']);
 Route::get('/kategori/hapus/{id}', [KategoriController::class, 'hapus'])->name('kategori.hapus');
-Route::post('/kategori', [KategoriController::class, 'store']);
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/tambah', [UserController::class, 'tambah']);
 Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan']);
