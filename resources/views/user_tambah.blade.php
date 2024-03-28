@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,4 +28,69 @@
 
     </form>
 </body>
-</html>
+</html> --}}
+
+@extends('adminlte::page')
+@section('content_header')
+<h1>Tambah User</h1>
+@stop
+
+@section('content')
+<!-- general form elements disabled -->
+<div class="card card-warning">
+    <!-- /.card-header -->
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-sm-7">
+            <!-- text input -->
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" class="form-control" name="username" placeholder="Enter Username ...">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7">
+              <!-- text input -->
+              <div class="form-group">
+                <label>Nama</label>
+                <input type="text" class="form-control" name="nama" placeholder="Enter Nama ...">
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7">
+              <!-- text input -->
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="pass" placeholder="Enter password ...">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-7">
+              <!-- select -->
+              <div class="form-group">
+                <label>Pilih Level</label>
+                <select class="custom-select" name="level">
+                  @foreach ($data as $u)
+                    <option value="{{ $u->level_jd }}">{{ $u->level_nama }}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-7">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+      </form>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+@stop
+@section('js')
+<script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+@stop

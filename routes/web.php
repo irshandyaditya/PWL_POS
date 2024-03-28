@@ -21,6 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/level', [LevelController::class, 'index']);
+Route::get('/level/tambah', [LevelController::class, 'tambah']);
 Route::get('/kategori', [KategoriController::class, 'index']);
 Route::get('/kategori/create', [KategoriController::class, 'create']);
 Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');

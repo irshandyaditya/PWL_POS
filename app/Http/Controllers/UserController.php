@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LevelModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -114,7 +115,8 @@ class UserController extends Controller
 
     public function tambah()
     {
-        return view('user_tambah');
+        $level = LevelModel::get();
+        return view('user_tambah', ['data' => $level]);
     }
 
     public function tambah_simpan(Request $request)
