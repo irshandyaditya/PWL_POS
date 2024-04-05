@@ -11,5 +11,5 @@ class LevelModel extends Model
 
     protected $table = 'm_level';        // Mendefinisikan nama tabel yang digunakan model ini
     protected $primaryKey = 'level_id';  // Mendefinisikan primary key dari tabel yang digunakan
-    // protected $fillable = ['level_id', 'username', 'nama', 'password'];
+    protected $fillable = ['level_nama', 'level_kode'];
 }
