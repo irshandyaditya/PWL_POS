@@ -3,6 +3,7 @@
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\POSController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\UserController;
@@ -79,14 +80,15 @@ Route::group(['prefix' => 'stok'], function(){
 });
 
 Route::group(['prefix' => 'penjualan'], function(){
-    Route::get('/', [StokController::class, 'index']);          //menampilkan halaman awal
-    Route::post('/list', [StokController::class, 'list']);      //menampilkan data user
-    Route::get('/create', [StokController::class, 'create']);  //menampilkan halaman form tambah user
-    Route::post('/',  [StokController::class, 'store']);        //menyimpan data user baru
-    Route::get('/{id}', [StokController::class, 'show']);       //menampilkan detail user
-    Route::get('/{id}/edit', [StokController::class, 'edit']);  //menampilkan halaman form edit user
-    Route::put('/{id}', [StokController::class, 'update']);     //menyimpan perubahan data user
-    Route::delete('/{id}', [StokController::class, 'destroy']); //menghapus data user
+    Route::get('/', [PenjualanController::class, 'index']);          //menampilkan halaman awal
+    Route::post('/list', [PenjualanController::class, 'list']);      //menampilkan data user
+    Route::get('/create', [PenjualanController::class, 'create']);  //menampilkan halaman form tambah user
+    Route::post('/',  [PenjualanController::class, 'store']);        //menyimpan data user baru
+    Route::get('/{id}', [PenjualanController::class, 'show']);       //menampilkan detail user
+    Route::get('/{id}/edit', [PenjualanController::class, 'edit']);  //menampilkan halaman form edit user
+    Route::put('/{id}/{idDetail}', [PenjualanController::class, 'update']);     //menyimpan perubahan data user
+    Route::delete('/{id}', [PenjualanController::class, 'destroy']); //menghapus data user
+    Route::get('/get-harga/{id}', [PenjualanController::class, 'getHarga']); //get harga
 });
 
 // Route::get('/level', [LevelController::class, 'index']);

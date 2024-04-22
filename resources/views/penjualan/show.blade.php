@@ -6,7 +6,7 @@
             <div class="card-tools"></div>
         </div>
         <div class="card-body">
-            @empty($stok)
+            @empty($penjualan)
                 <div class="alert alert-danger alert-dismissible">
                     <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5>
                     Data yang Anda cari tidak ditemukan.
@@ -15,27 +15,39 @@
                 <table class="table table-bordered table-striped table-hover tablesm">
                     <tr>
                         <th>ID</th>
-                        <td>{{ $stok->stok_id }}</td>
+                        <td>{{ $penjualan->penjualan_id }}</td>
                     </tr>
                     <tr>
                         <th>barang</th>
-                        <td>{{ $stok->barang->barang_nama }}</td>
+                        <td>{{ $penjualan->barang->barang_nama }}</td>
                     </tr>
                     <tr>
                         <th>User</th>
-                        <td>{{ $stok->user->nama }}</td>
+                        <td>{{ $penjualan->penjualan->user->nama }}</td>
                     </tr>
                     <tr>
-                        <th>Tanggal stok</th>
-                        <td>{{ $stok->stok_tanggal }}</td>
+                        <th>Pembeli</th>
+                        <td>{{ $penjualan->penjualan->pembeli }}</td>
                     </tr>
                     <tr>
-                        <th>Jumlah stok</th>
-                        <td>{{ $stok->stok_jumlah }}</td>
+                        <th>Harga</th>
+                        <td>{{ $penjualan->harga }}</td>
+                    </tr>
+                    <tr>
+                        <th>Jumlah</th>
+                        <td>{{ $penjualan->jumlah }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tanggal penjualan</th>
+                        <td>{{ $penjualan->penjualan->penjualan_tanggal }}</td>
+                    </tr>
+                    <tr>
+                        <th>Kode penjualan</th>
+                        <td>{{ $penjualan->penjualan->penjualan_kode }}</td>
                     </tr>
                 </table>
             @endempty
-            <a href="{{ url('stok') }}" class="btn btn-sm btn-default mt2">Kembali</a>
+            <a href="{{ url('penjualan') }}" class="btn btn-sm btn-default mt2">Kembali</a>
         </div>
     </div>
 @endsection
