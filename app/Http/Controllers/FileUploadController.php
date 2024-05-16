@@ -12,6 +12,11 @@ class FileUploadController extends Controller
         return view('file-upload');
     }
 
+    public function fileUploadRename()
+    {
+        return view('file-upload-rename');
+    }
+
     public function prosesFileUpload(Request $request)
     {
         // dump($request->berkas);
@@ -48,6 +53,30 @@ class FileUploadController extends Controller
         echo "proses upload berhasil, data disimpan pada: $path";
         echo "<br>";
         echo "Tampilkan link:<a href='$pathBaru'>$pathBaru</a>";
+        // echo $request->berkas->getClientOriginalName() . " lolos validasi";
+        
+        // $pathBaru = asset('storage/'.$namaFile);
+        // echo "proses upload berhasil, data disimpan pada: $path";
+        // echo "<br>";
+        // echo "Tampilkan link:<a href='$pathBaru'>$pathBaru</a>";
+    }
+
+    public function prosesFileUploadRename(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'berkas' => 'required|file|image|max:500',
+        ]);
+        $extensionFile = $request->berkas->getClientOriginalExtension();
+        $namaFile = $request->nama . "." . $extensionFile;
+        $path = $request->berkas->move('gambar', $namaFile);
+        $path = str_replace('\\', "//", $path);
+        // echo "Variabel path berisi:$path <br>";
+
+        $pathBaru = asset('gambar/'.$namaFile);
+        echo "Gambar berhasil di upload ke $namaFile";
+        echo "<br>";
+        echo "<img src='$pathBaru'>";
         // echo $request->berkas->getClientOriginalName() . " lolos validasi";
         
         // $pathBaru = asset('storage/'.$namaFile);
