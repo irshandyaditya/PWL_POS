@@ -73,6 +73,16 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-1 control-label col-form-label">Gambar Kode</label>
+                        <div class="col-11">
+                            <input type="file" class="form-control" id="image" name="image"
+                                value="{{ old('image') }}" required>
+                            @error('image')
+                                <small class="form-text text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-1 control-label col-form-label"></label>
                         <div class="col-11">
                             <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
